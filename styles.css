@@ -279,9 +279,8 @@ a:hover {
 .skill-progress {
     height: 100%;
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    width: var(--skill-level);
+    width: 0;
     transition: width 1s ease;
-    animation: fillProgress 1s ease forwards;
 }
 
 @keyframes fillProgress {
@@ -559,3 +558,36 @@ a:hover {
 .mb-1 { margin-bottom: var(--spacing-sm); }
 .mb-2 { margin-bottom: var(--spacing-md); }
 .mb-3 { margin-bottom: var(--spacing-lg); }
+/* Layout and interaction states */
+#navbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.nav-menu { display: flex; gap: .25rem; }
+.nav-menu li { margin-left: 0; }
+.nav-link { display: block; }
+.nav-link.active { background: rgba(255,255,255,.22); }
+section { scroll-margin-top: 90px; }
+.hero { display: flex; align-items: center; justify-content: center; text-align: center; }
+.hero-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+.skills-grid, .projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+.skill-card, .project-card { margin-bottom: 0; }
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2rem; }
+.form-group-full { grid-column: 1 / -1; }
+.nav-toggle { border: 0; background: transparent; padding: 0; flex-shrink: 0; }
+.nav-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+[hidden] { display: none !important; }
+#project-count { text-align: center; color: var(--text-light); }
+#message-count.error { color: #dc2626; }
+:focus-visible { outline: 3px solid #3949ab; outline-offset: 4px; }
+@media (max-width: 768px) {
+    #navbar { padding: 1rem; }
+    .nav-brand { font-size: 1.2rem; }
+    .nav-toggle { display: block; }
+    .nav-menu { display: none; position: absolute; top: 100%; left: 0; width: 100%; flex-direction: column; padding: 1rem; background: var(--secondary-color); box-shadow: 0 10px 20px rgba(0,0,0,.15); }
+    .nav-menu.active { display: flex; }
+    .skills-grid, .projects-grid, .form-grid { grid-template-columns: 1fr; }
+    .container { padding: 0 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+}
